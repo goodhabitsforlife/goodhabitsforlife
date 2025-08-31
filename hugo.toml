@@ -1,17 +1,49 @@
 baseURL = "https://goodhabitsforlife.com/"
 languageCode = "en-us"
 title = "Good Habits for Life"
-paginate = 10
 enableRobotsTXT = true
+
+[taxonomies]
+  topic = "topics"
+  tag   = "tags"
 
 [permalinks]
   articles = "/articles/:slug/"
-  habits = "/habits/:slug/"
-  guides = "/guides/:slug/"
+  habits   = "/habits/:slug/"
+  guides   = "/guides/:slug/"
 
 [outputs]
   home = ["HTML", "RSS"]
 
 [params]
-  description = "Practical, evidence-based guides to build habits that stick."
+  description = "Simple, science-informed guides to build better habits that stick."
   author = "Dheeraj Issar"
+  images = ["/images/og-default.jpg"]
+  twitter = "@goodhabits4life"
+  showToc = true
+
+[menu]
+  [[menu.main]]
+    name = "Articles"
+    url  = "/articles/"
+    weight = 10
+  [[menu.main]]
+    name = "Habits"
+    url  = "/habits/"
+    weight = 20
+  [[menu.main]]
+    name = "Guides"
+    url  = "/guides/"
+    weight = 30
+  [[menu.main]]
+    name = "Resources"
+    url  = "/resources/"
+    weight = 40
+  [[menu.main]]
+    name = "About"
+    url  = "/about/"
+    weight = 50
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true

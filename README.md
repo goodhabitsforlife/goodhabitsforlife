@@ -1,22 +1,38 @@
-# Good Habits for Life (Hugo)
+# Good Habits for Life — Hugo Revamp
 
-This is the Hugo-based static site for https://goodhabitsforlife.com.
-
-## Local dev (optional)
-- Install Hugo Extended.
-- Run: `hugo server -D`
+This repository contains the full Hugo source for https://goodhabitsforlife.com, designed for speed, accessibility, SEO, and an easy GitOps workflow.
 
 ## Deploy
-Pushing to `main` triggers GitHub Actions to build and deploy the generated `public/` folder to your cPanel `public_html` via FTPS.
-
-### Required GitHub Secrets
-- `FTP_HOST` = your server IP (e.g., 162.241.116.114)
-- `FTP_USERNAME` = FTP user
+On every push to `main`, GitHub Actions builds and deploys to cPanel via FTP (see `.github/workflows/deploy.yml`). Set repository secrets:
+- `FTP_HOST` = your FTP host (e.g., `162.241.116.114`)
+- `FTP_USERNAME` = FTP user restricted to `public_html`
 - `FTP_PASSWORD` = FTP password
-- `FTP_PATH` = `/public_html`
+- `FTP_PATH` = `/home1/goodhcnm/public_html`
 
-## Next up
-- [ ] Replace sample posts with real content
-- [ ] Add favicon and social image in /static
-- [ ] Configure Cloudflare cache rules for /css and /images
-- [ ] First deploy completed ✅
+## Structure
+- `content/` — Markdown content (articles, habits, guides, pages)
+- `layouts/` — Hugo templates/partials
+- `assets/css/` — Source CSS (piped via Hugo pipelines)
+- `static/` — Public static files (`.htaccess`, `robots.txt`, images)
+- `.github/workflows/` — CI/CD workflows
+
+## Authoring
+Create posts under `content/articles/`, `content/habits/`, `content/guides/` with YAML front matter:
+```yaml
+---
+title: "Title"
+slug: "slug"
+date: 2025-08-31
+author: "Dheeraj Issar"
+topics: ["topic1", "topic2"]
+tags: ["tag1"]
+difficulty: "starter"
+summary: "1–2 sentence summary."
+cover: "/images/cover.jpg"
+---
+```
+
+## Next Up
+- [ ] Add favicon set under `static/`
+- [ ] Hook Plausible or GA4 in `layouts/partials/analytics.html`
+- [ ] Publish 10–20 cornerstone articles
