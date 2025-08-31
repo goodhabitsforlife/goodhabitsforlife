@@ -29,4 +29,13 @@ jobs:
           server-dir: ${{ secrets.FTP_PATH }}
           protocol: ftps
           dangerous-clean-slate: true
-          local-dir: ./public
+          local-dir: ./public/
+            # Keep cPanel system folders if they exist
+        exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.hugo_build.lock
+            .well-known/**
+            cgi-bin/**
+
