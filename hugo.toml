@@ -1,0 +1,17 @@
+baseURL = "https://goodhabitsforlife.com/"
+languageCode = "en-us"
+title = "Good Habits for Life"
+paginate = 10
+enableRobotsTXT = true
+
+[permalinks]
+  articles = "/articles/:slug/"
+  habits = "/habits/:slug/"
+  guides = "/guides/:slug/"
+
+[outputs]
+  home = ["HTML", "RSS"]
+
+[params]
+  description = "Practical, evidence-based guides to build habits that stick."
+  author = "Dheeraj Issar"
