@@ -1,14 +1,14 @@
 ---
-title: "The Daily Walk"
-slug: "daily-walk"
+title: "The 2‑Minute Rule"
+slug: "two-minute-rule"
 date: 2025-08-31
 author: "Dheeraj Issar"
-topics: ["fitness", "mental health"]
+topics: ["productivity", "getting started"]
 difficulty: "starter"
-summary: "A 10–20 minute brisk walk boosts mood and creativity."
+summary: "Beat procrastination by shrinking the first step."
 cover: ""
 ---
 
-A 10–20 minute brisk walk boosts mood and creativity.
+Beat procrastination by shrinking the first step.
 
 **Try this:** define the smallest action that takes ≤ 2 minutes. Do it daily after a stable cue (e.g., after coffee). Track a simple ✓ each day.
