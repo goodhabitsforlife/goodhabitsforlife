@@ -1,0 +1,19 @@
+{{ define "main" }}
+<article class="wrap post">
+  <header>
+    <h1>{{ .Title }}</h1>
+    <p class="meta">
+      {{ .Date.Format "Jan 2, 2006" }}
+      {{ with .Params.topics }} • {{ delimit . ", " }}{{ end }}
+      {{ with .Params.difficulty }} • {{ . }}{{ end }}
+    </p>
+    {{ with .Params.cover }}
+      <figure><img src="{{ . }}" alt=""></figure>
+    {{ end }}
+    {{ with .Params.summary }}<p class="lead">{{ . }}</p>{{ end }}
+  </header>
+  <div class="content">
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}

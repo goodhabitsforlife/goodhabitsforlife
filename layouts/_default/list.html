@@ -1,0 +1,19 @@
+{{ define "main" }}
+<section class="wrap">
+  <h1>{{ .Title }}</h1>
+  {{ if .Content }}<div class="lead">{{ .Content }}</div>{{ end }}
+  <ul class="post-list">
+    {{ range .Paginator.Pages }}
+      <li>
+        <a class="post-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <span class="post-date">{{ .Date.Format "Jan 2, 2006" }}</span>
+        {{ with .Params.summary }}<p class="summary">{{ . }}</p>{{ end }}
+        {{ with .Params.topics }}<p class="meta">Topics: {{ delimit . ", " }}</p>{{ end }}
+      </li>
+    {{ end }}
+  </ul>
+  <div class="pager">
+    {{ template "_internal/pagination.html" . }}
+  </div>
+</section>
+{{ end }}
