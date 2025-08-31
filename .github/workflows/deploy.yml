@@ -1,5 +1,4 @@
-name: Build & Deploy (Hugo → cPanel FTPS)
-
+name: Build & Deploy
 on:
   push:
     branches: [ main ]
@@ -8,32 +7,22 @@ jobs:
   build-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v3
-        with:
-          hugo-version: '0.127.0'
-          extended: true
-
+      - uses: actions/checkout@v4
+      - name: Install Hugo (extended)
+        run: |
+          HUGO_VERSION=0.127.0
+          wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz -O hugo.tar.gz
+          tar -xzf hugo.tar.gz
+          sudo mv hugo /usr/local/bin/hugo
+          hugo version
       - name: Build
         run: hugo --minify
-
-      - name: Deploy via FTPS
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: ${{ secrets.FTP_PATH }}/
-          protocol: ftps
+          local-dir: ./public
+          server-dir: ${{ secrets.FTP_PATH }}
           dangerous-clean-slate: true
-          local-dir: ./public/
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
-            **/.hugo_build.lock
-            cgi-bin/**
-            .well-known/**
