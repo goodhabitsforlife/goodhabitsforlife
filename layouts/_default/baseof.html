@@ -1,18 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    {{ partial "head.html" . }}
-  </head>
-  <body>
-    <header class="site-header">
-      {{ partial "header.html" . }}
-    </header>
-    <main class="site-main">
-      {{ block "main" . }}{{ end }}
-    </main>
-    <footer class="site-footer">
-      {{ partial "footer.html" . }}
-    </footer>
-    <link rel="stylesheet" href="/css/site.css">
-  </body>
-</html>
+{{ partial "head.html" . }}
+{{ partial "header.html" . }}
+  {{ block "main" . }}{{ end }}
+{{ partial "footer.html" . }}

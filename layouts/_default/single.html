@@ -1,19 +1,30 @@
 {{ define "main" }}
-<article class="wrap post">
+<article>
   <header>
     <h1>{{ .Title }}</h1>
-    <p class="meta">
-      {{ .Date.Format "Jan 2, 2006" }}
-      {{ with .Params.topics }} • {{ delimit . ", " }}{{ end }}
-      {{ with .Params.difficulty }} • {{ . }}{{ end }}
-    </p>
-    {{ with .Params.cover }}
-      <figure><img src="{{ . }}" alt=""></figure>
-    {{ end }}
-    {{ with .Params.summary }}<p class="lead">{{ . }}</p>{{ end }}
+    <div class="byline">
+      {{ with .Params.author }}By {{ . }} · {{ end }}{{ .Date.Format "Jan 2, 2006" }}
+      {{ with .Params.topics }}
+        &nbsp;·&nbsp;
+        {{ range . }}<span class="tag">{{ . }}</span>{{ end }}
+      {{ end }}
+    </div>
   </header>
   <div class="content">
     {{ .Content }}
   </div>
+  <hr>
+  <section aria-labelledby="related">
+    <h3 id="related">Related</h3>
+    <div>
+      {{ $current := . }}
+      {{ range first 3 (where (where .Site.RegularPages "Section" $current.Section) "Permalink" "ne" $current.Permalink) }}
+        <div class="list-item">
+          <a href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong></a>
+          <div class="meta">{{ .Date.Format "Jan 2, 2006" }}</div>
+        </div>
+      {{ end }}
+    </div>
+  </section>
 </article>
 {{ end }}
