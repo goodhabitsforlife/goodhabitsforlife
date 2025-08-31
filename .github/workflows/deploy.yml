@@ -17,12 +17,20 @@ jobs:
           hugo version
       - name: Build
         run: hugo --minify
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4
+      - name: Deploy via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./public
-          server-dir: ${{ secrets.FTP_PATH }}
+          server-dir: ${{ secrets.FTP_PATH }}/
+          protocol: ftps
           dangerous-clean-slate: true
+          local-dir: ./public/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.hugo_build.lock
+            cgi-bin/**
+            .well-known/**
