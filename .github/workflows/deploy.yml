@@ -26,16 +26,14 @@ jobs:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: ${{ secrets.FTP_PATH }}
+          server-dir: ${{ secrets.FTP_PATH }}/
           protocol: ftps
           dangerous-clean-slate: true
           local-dir: ./public/
-            # Keep cPanel system folders if they exist
-        exclude: |
+          exclude: |
             **/.git*
             **/.git*/**
             **/node_modules/**
             **/.hugo_build.lock
-            .well-known/**
             cgi-bin/**
-
+            .well-known/**
