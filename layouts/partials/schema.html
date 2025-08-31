@@ -1,0 +1,27 @@
+{{- if .IsHome -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Good Habits for Life",
+  "url": "{{ .Site.BaseURL }}",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ .Site.BaseURL }}?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+{{- else if eq .Section "articles" "habits" "guides" -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ .Title }}",
+  "datePublished": "{{ .Date.Format "2006-01-02" }}",
+  "dateModified": "{{ .Lastmod.Format "2006-01-02" }}",
+  "author": {"@type": "Person","name":"{{ with .Params.author }}{{ . }}{{ else }}{{ .Site.Params.author }}{{ end }}"},
+  "mainEntityOfPage": {"@type":"WebPage","@id":"{{ .Permalink }}"}
+}
+</script>
+{{- end -}}

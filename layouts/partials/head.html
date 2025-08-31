@@ -1,20 +1,21 @@
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ if .Title }}{{ .Title }} | {{ end }}Good Habits for Life</title>
-<meta name="description" content="{{ with .Params.summary }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
-<link rel="canonical" href="{{ .Permalink }}">
-{{ with .OutputFormats.Get "RSS" -}}
-  <link rel="alternate" type="application/rss+xml" title="{{ site.Title }}" href="{{ .Permalink }}">
-{{- end }}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if .Title }}{{ .Title }} · {{ end }}Good Habits for Life</title>
+  <meta name="description" content="{{ with .Params.summary }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
+  <link rel="stylesheet" href="{{ resources.Get "css/site.css" | resources.Minify | resources.Fingerprint | relURL }}">
 
-<!-- Open Graph -->
-<meta property="og:site_name" content="Good Habits for Life">
-<meta property="og:title" content="{{ if .Title }}{{ .Title }} | {{ end }}Good Habits for Life">
-<meta property="og:description" content="{{ with .Params.summary }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
-<meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
-<meta property="og:url" content="{{ .Permalink }}">
+  <!-- OpenGraph / Twitter -->
+  <meta property="og:site_name" content="Good Habits for Life">
+  <meta property="og:title" content="{{ if .IsHome }}Good Habits for Life{{ else }}{{ .Title }} · Good Habits for Life{{ end }}">
+  <meta property="og:description" content="{{ with .Params.summary }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
+  <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  {{ with .Params.cover }}<meta property="og:image" content="{{ . }}">{{ end }}
+  <meta name="twitter:card" content="summary_large_image">
 
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ if .Title }}{{ .Title }} | {{ end }}Good Habits for Life">
-<meta name="twitter:description" content="{{ with .Params.summary }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
+  {{ partial "schema.html" . }}
+  {{ partial "analytics.html" . }}
+</head>

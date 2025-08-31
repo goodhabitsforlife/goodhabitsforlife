@@ -1,9 +1,13 @@
-<div class="wrap">
-  <a class="brand" href="/">Good Habits for Life</a>
-  <nav class="nav">
-    <a href="/articles/">Articles</a>
-    <a href="/habits/">Habits</a>
-    <a href="/guides/">Guides</a>
-    <a href="/about/">About</a>
-  </nav>
-</div>
+<body>
+<header class="site" role="banner">
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;">
+    <a href="{{ "/" | relURL }}" class="brand">Good Habits for Life</a>
+    <nav aria-label="Primary">
+      {{ range site.Menus.main }}
+        <a href="{{ .URL }}">{{ .Name }}</a>
+      {{ end }}
+    </nav>
+  </div>
+</header>
+<main id="content" class="container" role="main">
+<a class="visually-hidden" href="#content">Skip to content</a>
