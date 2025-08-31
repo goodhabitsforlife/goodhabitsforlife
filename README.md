@@ -19,4 +19,4 @@ Pushing to `main` triggers GitHub Actions to build and deploy the generated `pub
 - [ ] Replace sample posts with real content
 - [ ] Add favicon and social image in /static
 - [ ] Configure Cloudflare cache rules for /css and /images
-- [ ] First deploy ✅
+- [ ] First deploy completed ✅
